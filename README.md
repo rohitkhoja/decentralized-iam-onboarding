@@ -4,7 +4,7 @@
 
 This is our team's project for building a decentralized Identity and Access Management (IAM) system. The main goal is to solve the problem of slow employee onboarding where new hires have to wait days or weeks to get access to systems like building entry, VPN, code repos, etc. 
 
-We're using blockchain technology with Verifiable Credentials (VCs) and Decentralized Identifiers (DIDs) to make this instant. The idea is that when someone gets hired, they immediately get a credential that can be verified cryptographically without needing to contact a central server every time.
+We're using blockchain technology with Verifiable Credentials (VCs) and Decentralized Identifiers (DIDs) to make this instant. The idea is that when someone new joins, they immediately get a credential that can be verified cryptographically without needing to contact a central server every time.
 
 ### What We're Trying to Build
 
@@ -94,7 +94,7 @@ npx hardhat node
 npx hardhat run scripts/deploy.js --network localhost
 ```
 
-This is useful for testing without spending gas.
+This is useful for testing locally at zero cost.
 
 ### Sepolia Testnet
 
@@ -138,9 +138,9 @@ Apache License 2.0
 ## Team
 
 Our team consists of:
-- Project Manager
-- Smart Contract Developer (that's me!)
-- Frontend Developer
-- Backend/Off-Chain Engineer
-- QA & Documentation Lead
+- Project Manager - Ram Harikrishnan
+- Smart Contract Developer - Rohit Khoja
+- Frontend Developer - Abhirup Gunakar
+- Backend/Off-Chain Engineer - Nishit Dua
+- QA & Documentation Lead - Omkar Korate
 
