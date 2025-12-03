@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is our team's project for building a decentralized Identity and Access Management (IAM) system. The main goal is to solve the problem of slow employee onboarding where new hires have to wait days or weeks to get access to systems like building entry, VPN, code repos, etc. 
+This is our team's project for building a decentralized Identity and Access Management (IAM) system. The main goal is to solve the problem of slow employee onboarding where new hires have to wait days or weeks to get access to systems like building entry, VPN, code repos, etc.
 
 We're using blockchain technology with Verifiable Credentials (VCs) and Decentralized Identifiers (DIDs) to make this instant. The idea is that when someone new joins, they immediately get a credential that can be verified cryptographically without needing to contact a central server every time.
 
@@ -27,8 +27,10 @@ The system has three main smart contracts:
 - **Solidity** - for writing smart contracts
 - **Hardhat** - for development and testing
 - **Ethers.js** - for interacting with the blockchain
-- **IPFS** - for storing credential data off-chain
-- **React/Next.js** - for the frontend (still in progress)
+- **Node.js & Express** - for the backend services
+- **Next.js (React)** - for the frontend dashboards
+
+
 
  
 

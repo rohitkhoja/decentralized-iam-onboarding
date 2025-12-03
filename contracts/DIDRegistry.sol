@@ -1,7 +1,10 @@
-// SPDX-License-Identifier: Apache-2.0
 pragma solidity ^0.8.20;
 
+import "./IAuditLog.sol";
+
 contract DIDRegistry {
+    IAuditLog public auditLog;
+    bool public auditLogEnabled;
     
     struct DIDDocument {
         string did;
@@ -42,6 +45,34 @@ contract DIDRegistry {
         _;
     }
     
+    function setAuditLog(address _auditLog) external {
+        require(_auditLog != address(0), "Audit log address cannot be zero");
+        auditLog = IAuditLog(_auditLog);
+        auditLogEnabled = true;
+    }
+    
+    function disableAuditLog() external {
+        auditLogEnabled = false;
+    }
+    
+    function _logEvent(
+        IAuditLog.EventType eventType,
+        string memory actorDID,
+        string memory subjectDID,
+        string memory details
+    ) internal {
+        if (auditLogEnabled && address(auditLog) != address(0)) {
+            auditLog.logEvent(
+                eventType,
+                actorDID,
+                msg.sender,
+                subjectDID,
+                "",
+                details
+            );
+        }
+    }
+    
     function registerDID(
         string memory did,
         bytes memory publicKey,
@@ -65,6 +96,13 @@ contract DIDRegistry {
         didKeyHistory[did].push(publicKey);
         
         emit DIDRegistered(did, msg.sender, publicKey, block.timestamp);
+        
+        _logEvent(
+            IAuditLog.EventType.DID_REGISTERED,
+            did,
+            did,
+            string(abi.encodePacked("DID registered with key type: ", keyType))
+        );
     }
     
     function rotateKey(
@@ -82,6 +120,13 @@ contract DIDRegistry {
         didKeyHistory[did].push(newPublicKey);
         
         emit DIDKeyRotated(did, oldPublicKey, newPublicKey, block.timestamp);
+        
+        _logEvent(
+            IAuditLog.EventType.DID_KEY_ROTATED,
+            did,
+            did,
+            string(abi.encodePacked("Key rotated to type: ", keyType))
+        );
     }
     
     function deactivateDID(string memory did) external onlyController(did) {
@@ -89,6 +134,13 @@ contract DIDRegistry {
         didDocuments[did].updatedAt = block.timestamp;
         
         emit DIDDeactivated(did, block.timestamp);
+        
+        _logEvent(
+            IAuditLog.EventType.DID_DEACTIVATED,
+            did,
+            did,
+            "DID deactivated"
+        );
     }
     
     function getDIDDocument(string memory did) 

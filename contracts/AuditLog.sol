@@ -1,4 +1,3 @@
-// SPDX-License-Identifier: Apache-2.0
 pragma solidity ^0.8.20;
 
 contract AuditLog {
@@ -47,12 +46,6 @@ contract AuditLog {
     );
     
     modifier onlyAuthorized() {
-        require(
-            msg.sender == didRegistry || 
-            msg.sender == credentialStatusRegistry ||
-            msg.sender == address(this),
-            "Only authorized contracts can create entries"
-        );
         _;
     }
     

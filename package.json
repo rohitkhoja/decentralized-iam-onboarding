@@ -9,6 +9,9 @@
     "deploy:local": "hardhat run scripts/deploy.js --network localhost",
     "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
     "node": "hardhat node",
+    "server": "node server/index.js",
+    "check:accounts": "hardhat run scripts/checkAccounts.js --network localhost",
+    "test:e2e": "node scripts/test-end-to-end-flow.js",
     "clean": "hardhat clean",
     "coverage": "hardhat coverage"
   },
@@ -29,7 +32,15 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^5.0.0",
+    "cors": "^2.8.5",
+    "did-jwt": "^8.0.18",
+    "did-jwt-vc": "^3.2.15",
+    "did-resolver": "^4.1.0",
     "dotenv": "^16.6.1",
-    "ethers": "^6.8.0"
+    "ethers": "^6.8.0",
+    "ethr-did-resolver": "^11.0.5",
+    "express": "^4.18.2",
+    "ipfs-http-client": "^60.0.1",
+    "merkletreejs": "^0.3.11"
   }
 }
